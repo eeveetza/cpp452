@@ -37,7 +37,7 @@ Lb = tl_p452(f, p, d, h, zone, htg, hrg, phi_path, Gt, Gr, pol, dct, dcr, DN, N0
 | `N0`           | double    | N-units      |             | The sea-level surface refractivity at the path-center. It can be derived from an appropriate map (see below).|
 | `press`           | double    | hPa      |             | Dry air pressure.|
 | `temp`           | double    | deg C      |             | Air temperature.|
-| `ha_t`           | ouble    | m      |             | Clutter nominal height at the Tx side |
+| `ha_t`           | double    | m      |             | Clutter nominal height at the Tx side |
 | `ha_r`           | double    | m      |             | Clutter nominal height at the Rx side |
 | `dk_t`           | double    | km      |             | Clutter nominal distance at the Tx side |
 | `dk_r`           | double    | km      |             | Clutter nominal distance at the Rx side |
@@ -55,12 +55,12 @@ Note that  `d` needs to be significantly greater than `dk_t` and/or `dk_r` for t
 
 
 ## Meteorological Data
-The following input arguments can be derived from appropriate maps provided with the recommendation
+The following input arguments related to meteorological data:
 
 * `DN`: The average radio-refractive index lapse-rate through the lowest 1 km of the atmosphere at the path center
 * `N0`: The sea-level surface refractivity at the path center
 
-using the following function calls
+can be derived from the appropriate maps provided with the recommendation, using the following function calls
 ~~~ 
 std::string path = "./R-REC-P/"; // Path to the P452 maps DN50.TXT and N050.TXT
 P452DigitalMaps maps = P452DigitalMaps(path); // load P452 maps
