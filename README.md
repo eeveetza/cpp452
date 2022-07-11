@@ -33,7 +33,7 @@ Lb = tl_p452(f, p, d, h, zone, htg, hrg, phi_path, Gt, Gr, pol, dct, dcr, DN, N0
 | `pol`           | int    |       |   `pol`  = 1, 2          |  Polarization of the signal: 1 - horizontal, 2 - vertical |
 | `dct`           | double    | km      |   `dct` ≥ 0          |  Distance over land from the Tx antenna to the coast along the great-circle interference path. To be set to zero for a terminal on a ship or sea platform.|
 | `dcr`           | double    | km      |   `dcr` ≥ 0          |  Distance over land from the Rx antenna to the coast along the great-circle interference path. To be set to zero for a terminal on a ship or sea platform.|
-| `DN`            | double    | N-units/km      | `DN`> 0           | The average radio-refractive index lapse-rate through the lowest 1 km of the atmosphere at the path-center. It can be derived from an appropriate map (see below).  |
+| `DN`            | double    | N-units/km      | `DN`> 0           | The average radio-refractivity lapse-rate through the lowest 1 km of the atmosphere at the path-center. It can be derived from an appropriate map (see below).  |
 | `N0`           | double    | N-units      |             | The sea-level surface refractivity at the path-center. It can be derived from an appropriate map (see below).|
 | `press`           | double    | hPa      |             | Dry air pressure.|
 | `temp`           | double    | deg C      |             | Air temperature.|
@@ -57,7 +57,7 @@ Note that  `d` needs to be significantly greater than `dk_t` and/or `dk_r` for t
 ## Meteorological Data
 The following input arguments related to meteorological data:
 
-* `DN`: The average radio-refractive index lapse-rate through the lowest 1 km of the atmosphere at the path center
+* `DN`: The average radio-refractivity lapse-rate through the lowest 1 km of the atmosphere at the path center
 * `N0`: The sea-level surface refractivity at the path center
 
 can be derived from the appropriate maps provided with the recommendation, using the following function calls
