@@ -9,3 +9,5 @@ bool test7();
 bool test8();
 bool test9();
 bool test10();
+bool test11();
+bool test12();

@@ -1,3 +1,5 @@
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MAIN
 #define BOOST_TEST_MODULE VALIDATE_P452
 #include "boost/test/unit_test.hpp"
 #include "P452.hpp"
@@ -40,14 +42,14 @@ BOOST_AUTO_TEST_CASE( p452_test7 )
 
 BOOST_AUTO_TEST_CASE( my_test8 )
 {
-    
+
     BOOST_CHECK( test8() );        // #1 continues on error
 
 }
 // testing reading and interpolation from the meteorological maps
 BOOST_AUTO_TEST_CASE( my_test9 )
 {
-    
+
     BOOST_CHECK( test9() );        // #1 continues on error
 
 }
@@ -56,5 +58,19 @@ BOOST_AUTO_TEST_CASE( my_test9 )
 BOOST_AUTO_TEST_CASE( my_test10 )
 {
     BOOST_CHECK( test10() );        // #1 continues on error
+
+}
+
+// testing great circle path computations (mid path)
+BOOST_AUTO_TEST_CASE( my_test11 )
+{
+    BOOST_CHECK( test11() );        // #1 continues on error
+
+}
+
+// testing great circle path computations (mid path)
+BOOST_AUTO_TEST_CASE( my_test12 )
+{
+    BOOST_CHECK( test12() );        // #1 continues on error
 
 }

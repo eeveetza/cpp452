@@ -2,7 +2,7 @@
 #
 #  Makefile
 #
-#  author: 	Ivica Stevanovic		OFCOM
+#  author: 	Ivica Stevanovic	OFCOM
 # ___________________________________________________________________________
 
 
@@ -10,9 +10,10 @@
 PRGMAIN=test
 PRGBIN=test
 
-CC=g++
+CC=g++ -O3
 
-CFLAGS =   -O3 -m64 #-arch x86_64 
+
+CFLAGS =   -m64 #-arch x86_64 
 
 INCDIR =  -I.
 
@@ -29,9 +30,7 @@ OBJECTS = P452.cpp \
 %.o: %.cpp $(INCLUDES)
 	$(CC) $(CFLAGS) $(INCDIR) $(PFLAGS) -c $< -o $@ 
 
-
-LCOM	= /usr/local/lib/libboost_unit_test_framework.a
-
+LCOM = -L/usr/local/lib -lboost_unit_test_framework
 
 $(PRGBIN): $(OBJECTS) $(PRGMAIN).o
 	( $(CC) $(LFLAGS) $(OBJECTS) $(PRGMAIN).o $(LIBDIR) $(LIBS) $(LCOM) \

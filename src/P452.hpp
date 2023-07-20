@@ -19,11 +19,6 @@
 using namespace std;
 
 
-double tl_p452(double f, double p, std::vector<double> & d, std::vector<double> & h, std::vector<int> & zone, double htg, double hrg, double phi_path, double Gt, double Gr, int pol, double dct, double dcr, double DN, double N0, double press, double temp, double ha_t, double ha_r, double dk_t, double dk_r);
-
-void great_circle_path(double Phire, double Phite, double Phirn, double Phitn, double Re, double dpnt, double & Phipnte, double & Phipntn, double & Bt2r, double & dgc) ;
-// Define classes for dealing with P452 digital maps DN50.TXT and N050.TXT
-
 class DigitalMap
 {
 	std::vector<std::vector<double> > _map;
@@ -146,3 +141,9 @@ class P452DigitalMaps {
 	}
 
 };
+
+
+double tl_p452(P452DigitalMaps maps, double f, double p, std::vector<double> & d, std::vector<double> & h, std::vector<double> & g, std::vector<int> & zone, double htg, double hrg, double phit_e, double phit_n, double phir_e, double phir_n, double Gt, double Gr, int pol, double dct, double dcr,  double press, double temp);
+
+void great_circle_path(double Phire, double Phite, double Phirn, double Phitn, double Re, double dpnt, double & Phipnte, double & Phipntn, double & Bt2r, double & dgc) ;
+// Define classes for dealing with P452 digital maps DN50.TXT and N050.TXT
