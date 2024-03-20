@@ -108,7 +108,7 @@ class DigitalMap
 		double longitudeFraction = (longitudeOffset / _spacing) - longitudeIndex;
 
 		double value_ul = _map[latitudeIndex][longitudeIndex];
-		double value_ur = _map[latitudeIndex][longitudeIndex + 1];
+		double value_ur = _map[latitudeIndex][(longitudeIndex + 1) % _sizeX];
 		double value_ll = _map[(latitudeIndex + 1) % _sizeY ][longitudeIndex];
 		double value_lr = _map[(latitudeIndex + 1) % _sizeY][(longitudeIndex + 1) % _sizeX];
 
