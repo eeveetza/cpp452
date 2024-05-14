@@ -5,6 +5,22 @@
 #include "P452.hpp"
 #include "P452.test.hpp"
 
+
+// testing reading and interpolation from the meteorological maps
+BOOST_AUTO_TEST_CASE( my_test101 )
+{
+
+    BOOST_CHECK( test101() );        // #1 continues on error
+
+}
+
+// testing great circle path computations (mid path)
+BOOST_AUTO_TEST_CASE( my_test102 )
+{
+    BOOST_CHECK( test102() );        // #1 continues on error
+
+}
+
 BOOST_AUTO_TEST_CASE( p452_test1 )
 {
     BOOST_CHECK( test1() );        // #1 continues on error
@@ -46,7 +62,7 @@ BOOST_AUTO_TEST_CASE( my_test8 )
     BOOST_CHECK( test8() );        // #1 continues on error
 
 }
-// testing reading and interpolation from the meteorological maps
+
 BOOST_AUTO_TEST_CASE( my_test9 )
 {
 
@@ -54,23 +70,58 @@ BOOST_AUTO_TEST_CASE( my_test9 )
 
 }
 
-// testing great circle path computations (mid path)
 BOOST_AUTO_TEST_CASE( my_test10 )
 {
+
     BOOST_CHECK( test10() );        // #1 continues on error
 
 }
 
-// testing great circle path computations (mid path)
 BOOST_AUTO_TEST_CASE( my_test11 )
 {
+
     BOOST_CHECK( test11() );        // #1 continues on error
 
 }
 
-// testing great circle path computations (mid path)
 BOOST_AUTO_TEST_CASE( my_test12 )
 {
+
     BOOST_CHECK( test12() );        // #1 continues on error
+
+}
+
+BOOST_AUTO_TEST_CASE( my_test13 )
+{
+
+    BOOST_CHECK( test13() );        // #1 continues on error
+
+}
+
+BOOST_AUTO_TEST_CASE( my_test14 )
+{
+
+    BOOST_CHECK( test14() );        // #1 continues on error
+
+}
+
+BOOST_AUTO_TEST_CASE( my_test15 )
+{
+
+    BOOST_CHECK( test15() );        // #1 continues on error
+
+}
+
+BOOST_AUTO_TEST_CASE( my_test16 )
+{
+
+    BOOST_CHECK( test16() );        // #1 continues on error
+
+}
+
+BOOST_AUTO_TEST_CASE( my_test17 )
+{
+
+    BOOST_CHECK( test17() );        // #1 continues on error
 
 }

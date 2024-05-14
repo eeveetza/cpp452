@@ -2069,9 +2069,9 @@ void tl_troposcatter(P452DigitalMaps maps, double f, double dt, double hts, doub
             }
         }
 
-
+        double endVal = d[n-1] - 50.0/1000.0;
         for (int k = n - 1; k >=0 ; k--) {
-            if (d[n - 1] - d[k] < 50.0 / 1000.0) {
+            if ( d[k] > endVal) {
                 g[k] = h[k];
             } else {
                 break;

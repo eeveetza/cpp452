@@ -1,4 +1,6 @@
 # include "P452.hpp"
+bool test101();
+bool test102();
 bool test1();
 bool test2();
 bool test3();
@@ -11,3 +13,8 @@ bool test9();
 bool test10();
 bool test11();
 bool test12();
+bool test13();
+bool test14();
+bool test15();
+bool test16();
+bool test17();

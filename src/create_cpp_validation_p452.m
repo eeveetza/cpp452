@@ -83,10 +83,15 @@ for iname = 1 : length(filenames)
         p452.path.g(kk) = p452.path.h(kk);
     end
     
-    kk = find(p452.path.d(end)-p452.path.d < 50/1000);
+    endVal = p452.path.d(end) - 50/1000;
+    kk = find(p452.path.d > endVal);
     if (~isempty(kk))
         p452.path.g(kk) = p452.path.h(kk);
     end
+%     kk = find(p452.path.d(end)-p452.path.d < 50/1000);
+%     if (~isempty(kk))
+%         p452.path.g(kk) = p452.path.h(kk);
+%     end
 
     
     fname_part = filename1(13:end);
@@ -528,7 +533,7 @@ fprintf(fid, 'for (int ii = 1; ii <= %d; ii++) {\n', nrows);
  
  
 fprintf(fid, 'double result = tl_p452(maps,ff[ii-1], pp[ii-1], rDisti, rHeighti, gHeighti, iZonei, htg, hrg, phit_e, phit_n, phir_e, phir_n,  Gt, Gr, pol, dct, dcr, press, temp);\n');
-fprintf(fid, '   if(abs(expectedResult[ii-1] - result) > 1e-8) { \n');
+fprintf(fid, '   if(abs(expectedResult[ii-1] - result) > %f) { \n',tol);
 fprintf(fid, '            std::cout << std::setprecision(16);\n');
 fprintf(fid, '            std::cout << "Test failed. Lb computed = " << result << ", Lb reference: " << expectedResult[ii-1] << std::endl;\n');
 fprintf(fid, '            passed = false;\n');
