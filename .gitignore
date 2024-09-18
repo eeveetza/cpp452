@@ -33,3 +33,8 @@
 
 *.DS_Store
 test
+build
+outputdebug.txt
+.vscode
+.vs
+out

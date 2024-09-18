@@ -231,7 +231,7 @@ void smooth_earth_heights(std::vector<double> &  d, std::vector<double> & hi, do
       // v0    31MAR22     Ivica Stevanovic, OFCOM         First implementation in C++
 
 
-      int n = d.size();
+      size_t n = d.size();
 
       double dtot = d[n - 1];
 
@@ -451,7 +451,7 @@ void smooth_earth_heights(std::vector<double> &  d, std::vector<double> & hi, do
         double dm = 0;
         double dmc = 0;
         double delta;
-        int n = d.size();
+        size_t n = d.size();
         if (zone_r == 12) {
             for (int i = 0; i < n; i++)
             {
@@ -521,7 +521,7 @@ void smooth_earth_heights(std::vector<double> &  d, std::vector<double> & hi, do
 
         double dm = 0;
 
-        int n = d.size();
+        size_t n = d.size();
         double delta;
 
         for (int i = 0; i < n; i++) {
@@ -1228,7 +1228,7 @@ double dl_se_ft(double d, double hte, double hre, double adft, double f, double 
 
     }
 
-double dl_se(double rDist, double rhte, double rhre, double rap, double rFreq, double omega, double rpol) {
+double dl_se(double rDist, double rhte, double rhre, double rap, double rFreq, double omega, int rpol) {
         //   This function computes the Spherical-Earth diffraction loss exceeded
         //   for p% time for antenna heights rhte and rhre (m)
         //   as defined in Sec. 4.2.2 of the ITU-R P.452-17
@@ -1331,11 +1331,11 @@ double dl_bull(vector<double> & rDisti, vector<double>  & rhi, double rhts, doub
          v0    31MAR22     Ivica Stevanovic, OFCOM         First implementation in C++
          */
 
-        double rHi = 0;                //
+        //double rHi = 0;                //
         double rLambda = 0.2998/ rFreq;  //rFreq should be in GHz
         double rCe = 1.0/rAe;          // Effective Earth curvature
         double rLuc = 0;
-        int n = rDisti.size();
+        size_t n = rDisti.size();
         double rDist = rDisti[n-1]-rDisti[0];
 
         // Find the intermediate profile point with the highest slope of the line
@@ -1465,7 +1465,7 @@ double dl_delta_bull( vector<double> & d, vector<double> & h, double hts, double
 
         double hts1 = hts - hstd;   // eq (38a)
         double hrs1 = hrs - hsrd;   // eq (38b)
-        int n = d.size();
+        size_t n = d.size();
 
         vector<double> h1;
         h1.reserve(n);
@@ -1581,7 +1581,7 @@ void dl_p( vector<double> & d, vector<double> & h, double hts, double hrs, doubl
     }
 
 
-void closs_corr(double f, vector<double> & d, vector <double> & h, vector<int> & zone, double htg, double hrg, double ha_t, double ha_r, double dk_t, double dk_r,
+void closs_corr(double f, vector<double> & d, double htg, double hrg, double ha_t, double ha_r, double dk_t, double dk_r,
                 int & index1, int & index2, double & htgc, double & hrgc, double & Aht, double & Ahr) {
         // [index1, index2, htgc, hrgc, Aht, Ahr] = closs_corr(f, d, h, zone, htg, hrg, ha_t, ha_r, dk_t, dk_r)
         //closs clutter loss correction according to P.452-17
@@ -1617,7 +1617,7 @@ void closs_corr(double f, vector<double> & d, vector <double> & h, vector<int> &
 
 
         index1 = 0;
-        index2 = d.size()-1;
+        index2 = (int) d.size()-1;
 
         htgc = htg;
         hrgc = hrg;
@@ -1659,9 +1659,9 @@ void closs_corr(double f, vector<double> & d, vector <double> & h, vector<int> &
 
             Ahr = 10.25 * Ffc * exp(-dk) * (1 - tanh(6 * (hrg / ha - 0.625))) - 0.33;  // (57)
 
-            for (int kk = d.size()-1; kk >=0; kk--){
+            for (int kk = (int) d.size() - 1; kk >= 0; kk--) {
                 if (d[kk] <= d[d.size()-1] - dk ){
-                    index2 = kk;
+                    index2 = (int) kk;
                     break;
                 }
             }
@@ -1690,8 +1690,8 @@ void closs_corr(double f, vector<double> & d, vector <double> & h, vector<int> &
 
 
     bool check_value(vector<int> & var, vector<int> & dvals, std::string name) {
-        int n = var.size();
-        int nd = dvals.size();
+        size_t n = var.size();
+        size_t nd = dvals.size();
         bool res = false;
         
         for (int i = 0; i < n; i++){
@@ -1715,7 +1715,7 @@ void closs_corr(double f, vector<double> & d, vector <double> & h, vector<int> &
     }
 
     bool check_value(int var, vector<int> & dvals, std::string name) {
-        int nd = dvals.size();
+        size_t nd = dvals.size();
         bool res = false;
         
         res = false;
@@ -1886,7 +1886,7 @@ void closs_corr(double f, vector<double> & d, vector <double> & h, vector<int> &
         
         try {
 
-            closs_corr(f, d, h, zone, htg, hrg, ha_t, ha_r, dk_t, dk_r, index1, index2, htg, hrg, Aht, Ahr);
+            closs_corr(f, d, htg, hrg, ha_t, ha_r, dk_t, dk_r, index1, index2, htg, hrg, Aht, Ahr);
 
         } catch (const std::exception& e) {
             
@@ -1909,7 +1909,7 @@ void closs_corr(double f, vector<double> & d, vector <double> & h, vector<int> &
             zonec.push_back(zone[ii]);
         }
 
-        int n = dc.size();
+        size_t n = dc.size();
         double hst, hsr, hstd, hsrd, hte, hre, hm, dlt, dlr, theta_t, theta_r, theta;
         int pathtype;
         smooth_earth_heights(dc, hc, htg, hrg, ae, f, hst, hsr, hstd, hsrd, hte, hre, hm, dlt,dlr, theta_t, theta_r, theta, pathtype);
@@ -1927,7 +1927,7 @@ void closs_corr(double f, vector<double> & d, vector <double> & h, vector<int> &
 
         // Wavelength in meters
 
-        double lambda = 0.2998 / f;
+        //double lambda = 0.2998 / f;
 
 
         // Find the intermediate profile point with the highest slope of the line
