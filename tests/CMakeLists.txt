@@ -11,26 +11,10 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(
   p452_test
-  test1.cpp
-  test2.cpp
-  test3.cpp
-  test4.cpp
-  test5.cpp
-  test6.cpp
-  test7.cpp
-  test8.cpp
-  test9.cpp
-  test10.cpp
-  test11.cpp
-  test12.cpp
-  test13.cpp
-  test14.cpp
-  test15.cpp
-  test16.cpp
-  test17.cpp
+  validate_p452.cpp
   test101.cpp
   test102.cpp
-  
+
  )
 
 target_compile_features(p452_test PUBLIC cxx_std_17)
