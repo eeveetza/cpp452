@@ -12,6 +12,9 @@ This implementation corresponds to the original reference MATLAB/Octave implemen
 |`/src/P452.cpp`                | C++ implementation of Recommendation ITU-R P.452-18         |
 |`/src/maps/`          | Subfolder containing data maps provided with Recommendation ITU-R P.452 (see [Integrating ITU Digital Products](#integrating-itu-digital-products)). |
 |`/tests/`           | Folder containing validation tests against the reference MATLAB/Octave implementation from [ITU-R SG 3 Software, Data, and Validation Web Page](https://www.itu.int/en/ITU-R/study-groups/rsg3/Pages/iono-tropo-spheric.aspx)     |
+|`/tests/validate_p452.cpp` | Googletest test that reads every profile/results pair in `/tests/validation_examples/` at run time and checks both the intermediate path-profile parameters (`ae`, `dtot`, `hts`, `hrs`, `theta_t`, `theta_r`, `theta`, `hm`, `hte`, `hre`, `hstd`, `hsrd`, `dlt`, `dlr`, `pathtype`, `dtm`, `dlm`, `b0`, `omega`, `DN`, `N0`) and the final/intermediate transmission-loss terms (`Lbfsg`, `Lb0p`, `Lb0b`, `Ldsph`, `Ld50`, `Ldp`, `Lbs`, `Lba`, `Lb`) against the reference values - mirroring [`validate_p452.m`](https://github.com/eeveetza/p452/blob/main/matlab/validate_p452.m) in the MATLAB/Octave repository. |
+|`/tests/validation_examples/` | Copy of the MATLAB repository's `validation_examples/` folder (`profiles/*.csv`, `results/*.csv`). Update this folder whenever the MATLAB repository's copy changes; `validate_p452.cpp` will automatically pick up the new/changed cases the next time the tests run - no regeneration step needed. |
+|`/tests/test101.cpp`, `/tests/test102.cpp` | Unit tests for the digital-map bilinear interpolation, independent of the profile-based validation examples above. |
 
 
 ## Integrating ITU Digital Products
@@ -71,6 +74,8 @@ Validation can be performed by compiling the code and runing the tests as follow
 ~~~
 ./build.sh
 ~~~
+
+The main validation test, `tests/validate_p452.cpp`, reads every profile/results pair under `tests/validation_examples/` at run time (the same files used by [`validate_p452.m`](https://github.com/eeveetza/p452/blob/main/matlab/validate_p452.m) in the MATLAB/Octave repository) and checks both intermediate and final results against them, so keeping `tests/validation_examples/` in sync with the MATLAB repository is enough to keep this test suite current - no code generation or regeneration step is required.
 
 ## Software Versions
 The code was tested and runs on:

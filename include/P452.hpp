@@ -143,6 +143,116 @@ class P452DigitalMaps {
   }
 };
 
+// The following declarations expose the intermediate path-profile and
+// transmission-loss building blocks that tl_p452() is composed of. They
+// mirror the private/*.m functions called directly by validate_p452.m in
+// the reference MATLAB/Octave implementation, and are declared here so
+// that tests/validate_p452.cpp can validate intermediate results (not
+// just the final Lb) against the reference .csv files, the same way
+// validate_p452.m does.
+
+double longest_cont_dist(std::vector<double>& d, std::vector<int>& zone, int zone_r);
+
+double path_fraction_sea(std::vector<double>& d, std::vector<int>& zone, int zone_r);
+
+double beta0(double phi, double dtm, double dlm);
+
+void earth_rad_eff(double DN, double& ae, double& ab);
+
+void smooth_earth_heights(std::vector<double>& d,
+                          std::vector<double>& hi,
+                          double htg,
+                          double hrg,
+                          double ae,
+                          double f,
+                          double& hst,
+                          double& hsr,
+                          double& hstd,
+                          double& hsrd,
+                          double& hte,
+                          double& hre,
+                          double& hm,
+                          double& dlt,
+                          double& dlr,
+                          double& theta_t,
+                          double& theta_r,
+                          double& theta_tot,
+                          int& pathtype);
+
+void pl_los(double d,
+           double f,
+           double p,
+           double b0,
+           double w,
+           double temp,
+           double press,
+           double dlt,
+           double dlr,
+           double& Lbfsg,
+           double& Lb0p,
+           double& Lb0b);
+
+double tl_anomalous(double dtot,
+                    double dlt,
+                    double dlr,
+                    double dct,
+                    double dcr,
+                    double dlm,
+                    double hts,
+                    double hrs,
+                    double hte,
+                    double hre,
+                    double hm,
+                    double theta_t,
+                    double theta_r,
+                    double f,
+                    double p,
+                    double temp,
+                    double press,
+                    double omega,
+                    double ae,
+                    double b0);
+
+double dl_bull(std::vector<double>& rDisti,
+              std::vector<double>& rhi,
+              double rhts,
+              double rhrs,
+              double rAe,
+              double rFreq);
+
+double dl_se(double rDist,
+            double rhte,
+            double rhre,
+            double rap,
+            double rFreq,
+            double omega,
+            int rpol);
+
+void dl_p(std::vector<double>& d,
+         std::vector<double>& h,
+         double hts,
+         double hrs,
+         double hstd,
+         double hsrd,
+         double f,
+         double omega,
+         double p,
+         double b0,
+         double DN,
+         int pol,
+         double& Ldp,
+         double& Ld50);
+
+double tl_tropo(double dtot,
+                double theta,
+                double f,
+                double p,
+                double temp,
+                double press,
+                double N0,
+                double Gt,
+                double Gr);
+
 double tl_p452(P452DigitalMaps maps,
                double f,
                double p,

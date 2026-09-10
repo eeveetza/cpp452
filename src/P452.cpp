@@ -229,6 +229,7 @@ void smooth_earth_heights(std::vector<double> &  d, std::vector<double> & hi, do
       // Rev   Date        Author                          Description
       // -------------------------------------------------------------------------------
       // v0    31MAR22     Ivica Stevanovic, OFCOM         First implementation in C++
+      // v1    06SEP26     Ivica Stevanovic, OFCOM         Fix for horizon index seeding
 
 
       size_t n = d.size();
@@ -308,7 +309,7 @@ void smooth_earth_heights(std::vector<double> &  d, std::vector<double> & hi, do
 
 
       theta_t = 1000 * atan((hi[1] - hts) / (1000 * d[1]) - d[1] / (2 * ae));  // Eq (152)
-      int lt = 0;
+      int lt = 1;
 
       double theta;
 
@@ -334,12 +335,13 @@ void smooth_earth_heights(std::vector<double> &  d, std::vector<double> & hi, do
       }
 
       dlt = d[lt];                             // Eq (155)
+      
 
       // Interfered-with antenna horizon elevation angle and distance
 
       theta_r = 1000 * atan((hi[1] - hrs) / (1000 * (dtot - d[1])) - (dtot - d[1]) / (2 * ae));  // Eq (157)
 
-      int lr = 0;
+      int lr = 1;
 
       for (int ii = 2; ii < n - 1; ii++) {
 
@@ -364,7 +366,7 @@ void smooth_earth_heights(std::vector<double> &  d, std::vector<double> & hi, do
       double Ce = 1 / ae;
 
 
-      lt = 0;
+      lt = 1;
       double numax = (hi[1] + 500 * Ce * d[1] * (dtot - d[1]) - (hts * (dtot - d[1]) + hrs * d[1]) / dtot) * sqrt(0.002 * dtot / (lambda * d[1] * (dtot - d[1])));
 
       for (int ii = 2; ii < n - 1; ii++) {
@@ -382,7 +384,7 @@ void smooth_earth_heights(std::vector<double> &  d, std::vector<double> & hi, do
       dlt = d[lt];
       dlr = dtot - dlt;
 
-      lr = 0;
+      lr = 1;
 
       for (int ii = 2; ii < n - 1; ii++) {
 
